@@ -1,0 +1,37 @@
+{% extends 'base_teacher.html' %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">My Notices</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">My Notices</h2>
+  <a href="{% url 'teachers:notice_add' %}" class="btn btn-primary mb-3" role="button">Add notice</a>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Branch</th>
+          <th>Notice</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for notice in notices %}
+          <tr>
+            <td class="align-middle"><a href="{% url 'teachers:notice_delete' notice.pk %}" >{{ notice.company_name }}</a>
+            </td>
+            <td class="align-middle">{{ notice.add_notice }}</td>
+            <td class="text-right"></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">You haven't entered any notices yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

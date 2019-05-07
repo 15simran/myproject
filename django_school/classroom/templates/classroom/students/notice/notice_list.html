@@ -1,0 +1,28 @@
+{% extends 'base_student.html' %}
+
+{% block content %}
+  {% include 'classroom/students/_header.html' with active='new' %}
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Company name</th>
+          <th>Notice</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for notice in noticees %}
+          <tr>
+            <td class="align-middle">{{ notice.company_name }}</td>
+            <td class="align-middle">{{ notice.add_notice }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">No notice matching your branch right now.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
